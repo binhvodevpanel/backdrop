@@ -1,0 +1,25 @@
+version: "1.1"
+spec:
+  servicePort: 80
+  sharedDir:
+    path: /var/www/html
+    storage: '5Gi'
+  podTemplate:
+    containers:
+      - name: php
+        image: 'devpanel/php:7.4-apache'
+        env:
+          - name: "APP_ROOT"
+            value: "/var/www/html"
+          - name: "WEB_ROOT"
+            value: "/var/www/html"
+        ports:
+          - containerPort: 80
+            name: http
+        resources:
+          requests:
+            memory: 256Mi
+            cpu: 50m
+          limits:
+            memory: 256Mi
+            cpu: 50m
